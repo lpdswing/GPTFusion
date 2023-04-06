@@ -30,6 +30,15 @@ GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
 
 ##### Bard
 需有体验资格且必须登录 Google 账号(部分国家和地区无法正常访问)
+
+## Demo
+<div>
+<img src="demo/baidu.png" width=40% alt="yiyan"/>
+<img src="demo/gpt.png" width=40% alt="chatchat"/>
+<img src="demo/poe.png" width=40% alt="poe"/>
+<img src="demo/select.png" width=40% alt="平台选择"/>
+</div>
+
 ## Thanks
 
 https://github.com/1595901624/gpt-aggregated-edition

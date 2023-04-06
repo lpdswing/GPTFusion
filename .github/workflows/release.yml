@@ -12,9 +12,9 @@ jobs:
       fail-fast: false
       matrix:
         build: [
-          {name: gpt聚合版, platform: linux/amd64, os: ubuntu-latest},
-          {name: gpt聚合版, platform: windows/amd64, os: windows-latest},
-          {name: gpt聚合版, platform: darwin/universal, os: macos-latest}
+          {name: chatgpt, platform: linux/amd64, os: ubuntu-latest},
+          {name: chatgpt, platform: windows/amd64, os: windows-latest},
+          {name: chatgpt, platform: darwin/universal, os: macos-latest}
         ]
     runs-on: ${{ matrix.build.os }}
     steps:

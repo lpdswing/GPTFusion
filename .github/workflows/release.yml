@@ -12,9 +12,9 @@ jobs:
       fail-fast: false
       matrix:
         build: [
-          {name: GPT聚合版, platform: linux/amd64, os: ubuntu-latest},
-          {name: GPT聚合版, platform: windows/amd64, os: windows-latest},
-          {name: GPT聚合版, platform: darwin/universal, os: macos-latest}
+          {name: GPT_fusion.AppImage, platform: linux/amd64, os: ubuntu-latest},
+          {name: GPT_fusion.exe, platform: windows/amd64, os: windows-latest},
+          {name: GPT_fusion, platform: darwin/universal, os: macos-latest}
         ]
     runs-on: ${{ matrix.build.os }}
     steps:

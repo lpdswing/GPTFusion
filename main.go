@@ -55,6 +55,9 @@ func main() {
 	platforms.AddText("Bard", nil, func(cd *menu.CallbackData) {
 		wruntime.WindowExecJS(app.ctx, "window.location.replace('https://bard.google.com/');")
 	})
+	platforms.AddText("通义千问", nil, func(cd *menu.CallbackData) {
+		wruntime.WindowExecJS(app.ctx, "window.location.replace('https://tongyi.aliyun.com/');")
+	})
 
 	about := trayMenu.AddSubmenu("关于")
 	about.AddText("访问Github", nil, func(cd *menu.CallbackData) {

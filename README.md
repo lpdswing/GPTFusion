@@ -46,3 +46,13 @@ https://github.com/1595901624/gpt-aggregated-edition
 ## Building
 
 To build a redistributable, production mode package, use `wails build`.
+
+## 安装说明
+
+- macos
+  - 下载pkg安装包, 双击安装. 或者下载.zip包解压拖进Applications文件夹.
+  - 因为程序没有签名, 安装需要手动打开安全性与隐私, 然后点击允许打开
+- windows
+  - 下载.exe安装包, 双击安装
+- linux
+  - `sudo chmod +x 程序包名` 添加可执行权限,双击运行

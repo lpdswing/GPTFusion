@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import Index from './components/Index.vue'</script>
+import Index from './components/Index.vue'
+</script>
 
 <template>
-  <Index/>
+  <Index />
 </template>
 
 <style>

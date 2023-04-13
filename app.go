@@ -22,8 +22,8 @@ func NewApp() *App {
 
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods
-func (a *App) startup(ctx context.Context) {
-	a.ctx = ctx
+func (app *App) startup(ctx context.Context) {
+	app.ctx = ctx
 }
 
 type PlatForm struct {
@@ -32,7 +32,7 @@ type PlatForm struct {
 	Url   string `json:"url"`
 }
 
-func (a *App) ReadMenu() []PlatForm {
+func (app *App) ReadMenu() []PlatForm {
 	filePath := "menu.json"
 
 	platforms := []PlatForm{}
@@ -74,7 +74,7 @@ func (a *App) ReadMenu() []PlatForm {
 
 }
 
-func (a *App) EditMenu(platorms []PlatForm) {
+func (app *App) EditMenu(platorms []PlatForm) {
 	filePath := "menu.json"
 	content, err := json.Marshal(platorms)
 	if err != nil {
@@ -85,13 +85,14 @@ func (a *App) EditMenu(platorms []PlatForm) {
 		fmt.Println("Error writing file", err)
 	}
 	fmt.Println("Updated file")
-	a.updateCustomMenu()
+	app.updateCustomMenu()
 }
 
-func (a *App) updateCustomMenu() {
-	wruntime.MenuSetApplicationMenu(a.ctx, a.initMenu())
-	wruntime.MenuUpdateApplicationMenu(a.ctx)
-	wruntime.WindowReload(a.ctx)
+func (app *App) updateCustomMenu() {
+	_menu := app.initMenu()
+	wruntime.MenuSetApplicationMenu(app.ctx, _menu)
+	wruntime.MenuUpdateApplicationMenu(app.ctx)
+	wruntime.WindowReload(app.ctx)
 }
 
 func (app *App) initMenu() *menu.Menu {
@@ -138,19 +139,25 @@ func (app *App) initMenu() *menu.Menu {
 	custom_menu_data := app.ReadMenu()
 	fmt.Println(custom_menu_data)
 	for _, p := range custom_menu_data {
-		custom.AddText(p.Label, nil, func(cd *menu.CallbackData) {
-			jscode := fmt.Sprintf("window.location.replace('%s');", p.Url)
-			fmt.Println(jscode)
-			wruntime.WindowExecJS(app.ctx, jscode)
+		// go的for循环陷阱
+		temp := p
+		custom.Append(&menu.MenuItem{
+			Label: temp.Label,
+			Type:  menu.TextType,
+			Click: func(cd *menu.CallbackData) {
+				jscode := fmt.Sprintf("window.location.replace('%s');", temp.Url)
+				wruntime.WindowExecJS(app.ctx, jscode)
+			},
 		})
 	}
 	// 工具
-	platformEdit := trayMenu.AddSubmenu("工具")
+	platformEdit := trayMenu.AddSubmenu("设置")
 	platformEdit.AddText("平台管理", nil, func(cd *menu.CallbackData) {
 		wruntime.WindowExecJS(app.ctx, "window.location.replace('/');")
+		wruntime.WindowReload(app.ctx)
 	})
 
-	about := trayMenu.AddSubmenu("关于")
+	about := trayMenu.AddSubmenu("关于我们")
 	about.AddText("访问Github", nil, func(cd *menu.CallbackData) {
 		wruntime.BrowserOpenURL(app.ctx, "https://github.com/lpdswing/chatgpt")
 	})

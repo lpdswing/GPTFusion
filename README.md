@@ -1,8 +1,8 @@
 
 <div align="center">
     <h1>OneGPT - GPT聚合版</h1>
-    <div><img src="https://img.shields.io/badge/stable%20version-v0.1.0-blue.svg?style=flat"></img>
-<img src="https://img.shields.io/badge/preview%20version-v0.2.0%20PREVIEW-orange.svg?style=flat"></img>
+    <div><img src="https://img.shields.io/badge/stable%20version-v0.3.1-blue.svg?style=flat"></img>
+<img src="https://img.shields.io/badge/preview%20version-v0.4.0%20PREVIEW-orange.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/license-GPL%203.0-brightgreen.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/language-简体中文-brightgreen.svg?style=flat"></img></div>
     <h4>聚合ChatGPT官方版、ChatGPT免费版、文心一言、POE、chat chat等多个平台。</h4>
@@ -11,6 +11,15 @@
 ## About
 
 GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
+
+## Feature
+- [x] 跨平台
+- [x] 自定义平台菜单
+- [x] 菜单动态加载(windows)
+- [ ] 菜单动态加载(linux) 暂不支持
+- [ ] 菜单动态加载(macos) 暂不支持
+- [ ] 更多功能
+
 #### 聚合的平台
 
 ##### ChatGPT官方版
@@ -37,6 +46,8 @@ GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
 <img src="demo/gpt.png" width=40% alt="chatchat"/>
 <img src="demo/poe.png" width=40% alt="poe"/>
 <img src="demo/select.png" width=40% alt="平台选择"/>
+<img src="demo/tongyi.png" width=40% alt="阿里"/>
+<img src="demo/platforms.png" width=40% alt="阿里"/>
 </div>
 
 ## Thanks

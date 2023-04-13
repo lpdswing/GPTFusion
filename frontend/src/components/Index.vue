@@ -32,6 +32,8 @@ const edit = (row: main.PlatForm) => {
     dialogVisible.value = true
     dlgTitle.value = '编辑平台'
     newRowData.id = row.id
+    newRowData.label = row.label
+    newRowData.url = row.url
 };
 
 const del = (row: main.PlatForm) => {
@@ -96,6 +98,8 @@ const closeDig = () => {
     dlgTitle.value = '添加平台'
     addRowFormRef.value?.resetFields()
     newRowData.id = ''
+    newRowData.label = ''
+    newRowData.url = ''
 }
 
 // localstorage

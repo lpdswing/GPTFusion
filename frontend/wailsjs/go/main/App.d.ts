@@ -5,3 +5,5 @@ import {main} from '../models';
 export function EditMenu(arg1:Array<main.PlatForm>):Promise<void>;
 
 export function ReadMenu():Promise<Array<main.PlatForm>>;
+
+export function WriteHome(arg1:string):Promise<void>;

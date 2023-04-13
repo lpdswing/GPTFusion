@@ -88,6 +88,15 @@ func (app *App) EditMenu(platorms []PlatForm) {
 	app.updateCustomMenu()
 }
 
+func (app *App) WriteHome(url string) {
+	filePath := "home.txt"
+	data := []byte(url)
+	err := os.WriteFile(filePath, data, 0644)
+	if err != nil {
+		fmt.Println("Error writing file", err)
+	}
+}
+
 func (app *App) updateCustomMenu() {
 	_menu := app.initMenu()
 	wruntime.MenuSetApplicationMenu(app.ctx, _menu)
@@ -100,6 +109,7 @@ func (app *App) initMenu() *menu.Menu {
 	trayMenu = menu.NewMenu()
 	if runtime.GOOS == "darwin" {
 		trayMenu.Append(menu.AppMenu())
+		trayMenu.Append(menu.EditMenu())
 	}
 	platforms := trayMenu.AddSubmenu("平台选择")
 	platforms.AddText("文心一言(百度)", nil, func(cd *menu.CallbackData) {
@@ -153,7 +163,13 @@ func (app *App) initMenu() *menu.Menu {
 	// 工具
 	platformEdit := trayMenu.AddSubmenu("设置")
 	platformEdit.AddText("平台管理", nil, func(cd *menu.CallbackData) {
-		wruntime.WindowExecJS(app.ctx, "window.location.replace('/');")
+		url, err := os.ReadFile("home.txt")
+		if err != nil {
+			fmt.Println("Error reading file", err)
+		}
+		data := string(url)
+		fmt.Println(data)
+		wruntime.WindowExecJS(app.ctx, fmt.Sprintf("window.location.replace('%s');", data))
 		wruntime.WindowReload(app.ctx)
 	})
 

@@ -2,7 +2,7 @@
 import {reactive, ref} from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import type { FormInstance, FormRules } from 'element-plus'
-import { ReadMenu, EditMenu } from "../../wailsjs/go/main/App";
+import { ReadMenu, EditMenu, WriteHome } from "../../wailsjs/go/main/App";
 import {main} from "../../wailsjs/go/models"
 
 const tableData = ref<main.PlatForm[]>([])
@@ -97,6 +97,11 @@ const closeDig = () => {
     addRowFormRef.value?.resetFields()
     newRowData.id = ''
 }
+
+// localstorage
+WriteHome(window.location.href).then((data) => {
+    console.log(data)
+})
 </script>
 
 <template>

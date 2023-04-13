@@ -9,3 +9,7 @@ export function EditMenu(arg1) {
 export function ReadMenu() {
   return window['go']['main']['App']['ReadMenu']();
 }
+
+export function WriteHome(arg1) {
+  return window['go']['main']['App']['WriteHome'](arg1);
+}

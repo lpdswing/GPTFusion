@@ -8,6 +8,8 @@ import (
 	wruntime "github.com/wailsapp/wails/v2/pkg/runtime"
 	"os"
 	"runtime"
+	"path"
+	"os/user"
 )
 
 // App struct
@@ -33,7 +35,7 @@ type PlatForm struct {
 }
 
 func (app *App) ReadMenu() []PlatForm {
-	filePath := "menu.json"
+	filePath := configPath("menu.json")
 
 	platforms := []PlatForm{}
 
@@ -75,7 +77,7 @@ func (app *App) ReadMenu() []PlatForm {
 }
 
 func (app *App) EditMenu(platorms []PlatForm) {
-	filePath := "menu.json"
+	filePath := configPath("menu.json")
 	content, err := json.Marshal(platorms)
 	if err != nil {
 		fmt.Println("Error marshalling json", err)
@@ -89,7 +91,7 @@ func (app *App) EditMenu(platorms []PlatForm) {
 }
 
 func (app *App) WriteHome(url string) {
-	filePath := "home.txt"
+	filePath := configPath("home.txt")
 	data := []byte(url)
 	err := os.WriteFile(filePath, data, 0644)
 	if err != nil {
@@ -105,8 +107,7 @@ func (app *App) updateCustomMenu() {
 }
 
 func (app *App) initMenu() *menu.Menu {
-	var trayMenu *menu.Menu
-	trayMenu = menu.NewMenu()
+	trayMenu := menu.NewMenu()
 	if runtime.GOOS == "darwin" {
 		trayMenu.Append(menu.AppMenu())
 		trayMenu.Append(menu.EditMenu())
@@ -163,7 +164,8 @@ func (app *App) initMenu() *menu.Menu {
 	// 工具
 	platformEdit := trayMenu.AddSubmenu("设置")
 	platformEdit.AddText("平台管理", nil, func(cd *menu.CallbackData) {
-		url, err := os.ReadFile("home.txt")
+		home := configPath("home.txt")
+		url, err := os.ReadFile(home)
 		if err != nil {
 			fmt.Println("Error reading file", err)
 		}
@@ -178,4 +180,17 @@ func (app *App) initMenu() *menu.Menu {
 		wruntime.BrowserOpenURL(app.ctx, "https://github.com/lpdswing/chatgpt")
 	})
 	return trayMenu
+}
+
+func configPath(file string) string {
+	user, _ := user.Current()
+	homeDir := user.HomeDir
+	configDir := path.Join(homeDir, ".config", "gptfusion")
+	err := os.MkdirAll(configDir, 0755)
+	if err != nil {
+		fmt.Println("Error creating config dir", err)
+	}
+	filePath := path.Join(configDir, file)
+	fmt.Println(filePath)	
+	return filePath
 }

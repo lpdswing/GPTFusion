@@ -9,5 +9,9 @@
   "author": {
     "name": "lpdswing",
     "email": "lpdswing@qq.com"
+  },
+  "info": {
+    "productVersion": "0.3.3",
+    "companyName": "lpdswing"
   }
 }

@@ -1,7 +1,7 @@
 
 <div align="center">
     <h1>OneGPT - GPT聚合版</h1>
-    <div><img src="https://img.shields.io/badge/stable%20version-v0.3.1-blue.svg?style=flat"></img>
+    <div><img src="https://img.shields.io/badge/stable%20version-v0.3.3-blue.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/preview%20version-v0.4.0%20PREVIEW-orange.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/license-GPL%203.0-brightgreen.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/language-简体中文-brightgreen.svg?style=flat"></img></div>

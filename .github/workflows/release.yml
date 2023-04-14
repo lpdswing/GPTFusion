@@ -25,5 +25,6 @@ jobs:
         with:
           build-name: ${{ matrix.build.name }}
           build-platform: ${{ matrix.build.platform }}
+          soft-version: ${{ github.ref }}
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

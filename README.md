@@ -1,5 +1,6 @@
 
 <div align="center">
+    <img src="demo/GPT Fusion.png" alt="chatgpt"/>
     <h1>OneGPT - GPT聚合版</h1>
     <div><img src="https://img.shields.io/badge/stable%20version-v0.3.3-blue.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/preview%20version-v0.4.0%20PREVIEW-orange.svg?style=flat"></img>
@@ -61,9 +62,9 @@ To build a redistributable, production mode package, use `wails build`.
 ## 安装说明
 
 - macos
-  - 下载pkg安装包, 双击安装. 或者下载.zip包解压拖进Applications文件夹.
+  - 下载dmg安装包, 双击安装. 或者下载.zip包解压拖进Applications文件夹.
   - 因为程序没有签名, 安装需要手动打开安全性与隐私, 然后点击允许打开
 - windows
-  - 下载.exe安装包, 双击安装
+  - 下载.exe安装包, 双击打开
 - linux
   - `sudo chmod +x 程序包名` 添加可执行权限,双击运行

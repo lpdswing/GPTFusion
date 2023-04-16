@@ -1,7 +1,7 @@
 
 <div align="center">
     <img src="demo/GPT Fusion.png" alt="chatgpt"/>
-    <h1>OneGPT - GPT聚合版</h1>
+    <h1>GPTFusion - GPT聚合版</h1>
     <div><img src="https://img.shields.io/badge/stable%20version-v0.3.3-blue.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/preview%20version-v0.4.0%20PREVIEW-orange.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/license-GPL%203.0-brightgreen.svg?style=flat"></img>
@@ -34,9 +34,13 @@ GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
 
 ##### POE
 需要注册账户、需要登录账号、集合Sage（免费）、ChatGPT4（付费）、ChatGPT（付费）、Clude（免费）、Clude+（付费）、DragonFly（免费）(部分国家和地区无法正常访问)
+建议谷歌账户登录
 
 ##### 文心一言
 需要有体验资格且必须登录百度账号
+
+##### 通义千问
+需要有邀请码
 
 ##### Bard
 需有体验资格且必须登录 Google 账号(部分国家和地区无法正常访问)
@@ -53,7 +57,9 @@ GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
 
 ## Thanks
 
-https://github.com/1595901624/gpt-aggregated-edition
+- Idea: [OneGPT - GPT聚合版](https://github.com/1595901624/gpt-aggregated-edition)
+- [wails](https://github.com/wailsapp/wails)
+
 
 ## Building
 
@@ -62,9 +68,27 @@ To build a redistributable, production mode package, use `wails build`.
 ## 安装说明
 
 - macos
-  - 下载dmg安装包, 双击安装. 或者下载.zip包解压拖进Applications文件夹.
-  - 因为程序没有签名, 安装需要手动打开安全性与隐私, 然后点击允许打开
+  - 下载GPTFusion.xxx.dmg安装包, 双击安装. (推荐)
+  - 下载GPTFusion.app.zip包解压拖进Applications文件夹.
+  - 如果无法打开, 设置里安全性与隐私, 然后点击允许打开
 - windows
-  - 下载.exe安装包, 双击打开
+  - 下载.exe安装包, 双击执行(安装版改为绿色版, 打开直接使用)
 - linux
-  - `sudo chmod +x 程序包名` 添加可执行权限,双击运行
+  - `sudo chmod +x GPTFusion.AppImage` 添加可执行权限,双击运行
+
+## 使用说明
+
+- 可以通过(设置-平台管理)菜单自定义菜单功能添加想添加的镜像站, 添加完成后所添加内容自动出现在自定义菜单中(**macos和Linux需要手动重启软件生效**).
+
+## 反馈
+
+- GitHub issue
+- **Go学习日记** 微信公众号
+**扫码关注公众号**
+<img src="demo/gzh.jpg" height="240" />
+
+## 捐赠
+
+| 微信 | 支付宝 |
+| --- | --- |
+| <img src="demo/wechat.jpg" height="240" /> | <img src="demo/alipay.jpg" height="240" /> |

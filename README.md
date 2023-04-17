@@ -8,12 +8,21 @@
 <img src="https://img.shields.io/badge/language-简体中文-brightgreen.svg?style=flat"></img></div>
     <h4>聚合ChatGPT官方版、ChatGPT免费版、文心一言、POE、chat chat等多个平台。</h4>
 </div>
+<div align="center">
+<strong>
+<samp>
 
-## About
+[简体中文](README.md) · [English](README.en.md)
+
+</samp>
+</strong>
+</div>
+
+## 关于
 
 GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
 
-## Feature
+## 功能
 - [x] 跨平台支持
 - [x] 自定义平台菜单
 - [x] 菜单动态加载(windows)
@@ -51,7 +60,7 @@ GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
 ##### Newbing
 需要有体验资格且必须登录微软账号(国内ip无法正常跳转)
 
-## Demo
+## 截图
 <div>
 <img src="demo/baidu.png" width=40% alt="yiyan"/>
 <img src="demo/gpt.png" width=40% alt="chatchat"/>
@@ -62,13 +71,13 @@ GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
 <img src="demo/wxyg.png" width=40% alt="wenxinyige"/>
 </div>
 
-## Thanks
+## 感谢
 
 - Idea: [OneGPT - GPT聚合版](https://github.com/1595901624/gpt-aggregated-edition)
 - [wails](https://github.com/wailsapp/wails)
 
 
-## Building
+## 编译
 
 To build a redistributable, production mode package, use `wails build`.
 

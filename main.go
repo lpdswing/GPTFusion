@@ -14,6 +14,8 @@ var assets embed.FS
 //go:embed build/appicon.png
 var icon []byte
 
+const Version = "v0.4.0"
+
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
@@ -35,7 +37,7 @@ func main() {
 		Mac: &mac.Options{
 			About: &mac.AboutInfo{
 				Title:   "GPT聚合版",
-				Message: "GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.\n" + "© 2023 by lpdswing. All Rights Reserved.",
+				Message: "版本号(" + Version + ")\n\n" + "GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.\n\n" + "© 2023 by lpdswing.\n" + "All Rights Reserved.",
 				Icon:    icon,
 			},
 		},

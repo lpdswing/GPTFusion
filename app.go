@@ -6,10 +6,11 @@ import (
 	"fmt"
 	"github.com/wailsapp/wails/v2/pkg/menu"
 	wruntime "github.com/wailsapp/wails/v2/pkg/runtime"
+	"net/http"
 	"os"
-	"runtime"
-	"path"
 	"os/user"
+	"path"
+	"runtime"
 )
 
 // App struct
@@ -55,7 +56,7 @@ func (app *App) ReadMenu() []PlatForm {
 		platforms = []PlatForm{
 			{
 				Id:    "1",
-				Label: "Google",
+				Label: "自定义Demo",
 				Url:   "https://www.google.com",
 			},
 		}
@@ -112,7 +113,8 @@ func (app *App) initMenu() *menu.Menu {
 		trayMenu.Append(menu.AppMenu())
 		trayMenu.Append(menu.EditMenu())
 	}
-	platforms := trayMenu.AddSubmenu("平台选择")
+	// 内置聊天平台
+	platforms := trayMenu.AddSubmenu("AI聊天平台")
 	platforms.AddText("文心一言(百度)", nil, func(cd *menu.CallbackData) {
 		wruntime.WindowExecJS(app.ctx, "window.location.replace('https://yiyan.baidu.com/');")
 	})
@@ -146,7 +148,13 @@ func (app *App) initMenu() *menu.Menu {
 	platforms.AddText("POE(多平台)", nil, func(cd *menu.CallbackData) {
 		wruntime.WindowExecJS(app.ctx, "window.location.replace('https://poe.com/');")
 	})
-	custom := trayMenu.AddSubmenu("自定义")
+	// 内置绘画平台
+	aiDraw := trayMenu.AddSubmenu("AI绘画平台")
+	aiDraw.AddText("文心一格", nil, func(cd *menu.CallbackData) {
+		wruntime.WindowExecJS(app.ctx, "window.location.replace('https://yige.baidu.com/');")
+	})
+
+	custom := trayMenu.AddSubmenu("自定义平台")
 	custom_menu_data := app.ReadMenu()
 	fmt.Println(custom_menu_data)
 	for _, p := range custom_menu_data {
@@ -162,8 +170,8 @@ func (app *App) initMenu() *menu.Menu {
 		})
 	}
 	// 工具
-	platformEdit := trayMenu.AddSubmenu("设置")
-	platformEdit.AddText("平台管理", nil, func(cd *menu.CallbackData) {
+	setting := trayMenu.AddSubmenu("设置")
+	setting.AddText("平台管理", nil, func(cd *menu.CallbackData) {
 		home := configPath("home.txt")
 		url, err := os.ReadFile(home)
 		if err != nil {
@@ -175,9 +183,35 @@ func (app *App) initMenu() *menu.Menu {
 		wruntime.WindowReload(app.ctx)
 	})
 
-	about := trayMenu.AddSubmenu("关于我们")
-	about.AddText("访问Github", nil, func(cd *menu.CallbackData) {
+	about := trayMenu.AddSubmenu("帮助")
+	about.AddText("关于我们", nil, func(cd *menu.CallbackData) {
+		wruntime.MessageDialog(app.ctx, wruntime.MessageDialogOptions{
+			Title:   "关于我们",
+			Message: "GPTFusion " + Version + "\n\n" + "作者：lpdswing\n\n" + "请关注微信公众号：Go学习日记",
+		})
+	})
+	about.AddText("前往Github", nil, func(cd *menu.CallbackData) {
 		wruntime.BrowserOpenURL(app.ctx, "https://github.com/lpdswing/chatgpt")
+	})
+	about.AddText("检查更新", nil, func(cd *menu.CallbackData) {
+		// 检查更新
+		ok, LatestVersion, err := checkForUpdate(Version)
+		if err != nil {
+			fmt.Println(err)
+		}
+		// 和当前版本不一致
+		if ok {
+			wruntime.MessageDialog(app.ctx, wruntime.MessageDialogOptions{
+				Title:   "软件更新",
+				Message: "您的当前版本为" + Version + "\n" + "最新版本为" + LatestVersion + "\n" + "请前往Github下载最新版本",
+			})
+		} else {
+			wruntime.MessageDialog(app.ctx, wruntime.MessageDialogOptions{
+				Title:   "软件更新",
+				Message: "您的当前版本为" + Version + "\n" + "已经是最新版本",
+			})
+		}
+
 	})
 	return trayMenu
 }
@@ -191,6 +225,27 @@ func configPath(file string) string {
 		fmt.Println("Error creating config dir", err)
 	}
 	filePath := path.Join(configDir, file)
-	fmt.Println(filePath)	
+	fmt.Println(filePath)
 	return filePath
+}
+
+func checkForUpdate(currentVersion string) (bool, string, error) {
+	// 检查更新
+	url := "https://api.github.com/repos/lpdswing/chatgpt/releases/latest"
+	resp, err := http.Get(url)
+	if err != nil {
+		return false, "", err
+	}
+	defer resp.Body.Close()
+
+	var release Release
+	if err := json.NewDecoder(resp.Body).Decode(&release); err != nil {
+		return false, "", err
+	}
+	fmt.Println(release.TagName)
+	return release.TagName != currentVersion, release.TagName, nil
+}
+
+type Release struct {
+	TagName string `json:"tag_name"`
 }

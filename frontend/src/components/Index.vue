@@ -35,18 +35,27 @@ const edit = (row: main.PlatForm) => {
     newRowData.label = row.label
     newRowData.url = row.url
 };
-
+const removeId = ref('')
 const del = (row: main.PlatForm) => {
     // 删除行
-    tableData.value = tableData.value.filter((item) => item.id !== row.id)
+    removeId.value = row.id
+    deleteDialogVisible.value = true
+
+};
+
+const confirm_del = () => {
+    // 删除行
+    tableData.value = tableData.value.filter((item) => item.id !== removeId.value)
     // 更新文件
     editMenu(tableData.value)
+    deleteDialogVisible.value = false
 };
 
 
 // 弹出框可见状态和表单数据
 const dlgTitle = ref('添加平台')
 const dialogVisible = ref(false)
+const deleteDialogVisible = ref(false)
 const newRowData = reactive({
     id: '',
     label: '',
@@ -137,16 +146,23 @@ WriteHome(window.location.href).then((data) => {
         <el-form ref="addRowFormRef" :model="newRowData" :rules="newRowRules">
             <!-- 表单项配置 -->
             <el-form-item label="平台名称" prop="label">
-                <el-input v-model="newRowData.label" />
+                <el-input v-model="newRowData.label" placeholder="请输入平台名称: 比如(百度)"/>
             </el-form-item>
             <el-form-item label="平台链接" prop="url">
-                <el-input v-model="newRowData.url" />
+                <el-input v-model="newRowData.url" placeholder="请输入平台链接: 比如(https://www.baidu.com)"/>
             </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
                 <el-button @click="closeDig">取消</el-button>
                 <el-button type="primary" @click="addRow">确定</el-button>
             </span>
+    </el-dialog>
+    <el-dialog title="确认删除" v-model="deleteDialogVisible" width="50%" draggable="true">
+        <span style="color: black;">删除后将不可恢复，确定要删除吗？</span>
+        <div style="margin-top: 36px;" slot="footer" class="dialog-footer">
+            <el-button @click="deleteDialogVisible = false">取消</el-button>
+            <el-button type="danger" @click="confirm_del">确定</el-button>
+        </div>
     </el-dialog>
 </template>
 

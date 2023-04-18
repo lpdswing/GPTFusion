@@ -27,6 +27,7 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (app *App) startup(ctx context.Context) {
 	app.ctx = ctx
+	app.updateDialog(false)
 }
 
 type PlatForm struct {
@@ -195,23 +196,7 @@ func (app *App) initMenu() *menu.Menu {
 	})
 	about.AddText("检查更新", nil, func(cd *menu.CallbackData) {
 		// 检查更新
-		ok, LatestVersion, err := checkForUpdate(Version)
-		if err != nil {
-			fmt.Println(err)
-		}
-		// 和当前版本不一致
-		if ok {
-			wruntime.MessageDialog(app.ctx, wruntime.MessageDialogOptions{
-				Title:   "软件更新",
-				Message: "您的当前版本为" + Version + "\n" + "最新版本为" + LatestVersion + "\n" + "请前往Github下载最新版本",
-			})
-		} else {
-			wruntime.MessageDialog(app.ctx, wruntime.MessageDialogOptions{
-				Title:   "软件更新",
-				Message: "您的当前版本为" + Version + "\n" + "已经是最新版本",
-			})
-		}
-
+		app.updateDialog(true)
 	})
 	return trayMenu
 }
@@ -248,4 +233,25 @@ func checkForUpdate(currentVersion string) (bool, string, error) {
 
 type Release struct {
 	TagName string `json:"tag_name"`
+}
+
+func (app *App) updateDialog(show bool) {
+	ok, LatestVersion, err := checkForUpdate(Version)
+	if err != nil {
+		fmt.Println(err)
+	}
+	// 和当前版本不一致
+	if ok {
+		wruntime.MessageDialog(app.ctx, wruntime.MessageDialogOptions{
+			Title:   "软件更新",
+			Message: "您的当前版本为" + Version + "\n" + "最新版本为" + LatestVersion + "\n" + "请前往Github下载最新版本",
+		})
+	} else {
+		if show {
+			wruntime.MessageDialog(app.ctx, wruntime.MessageDialogOptions{
+				Title:   "软件更新",
+				Message: "您的当前版本为" + Version + "\n" + "已经是最新版本",
+			})
+		}
+	}
 }

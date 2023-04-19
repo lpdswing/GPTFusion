@@ -119,6 +119,7 @@ WriteHome(window.location.href).then((data) => {
 
 <template>
     <div class="container">
+        <el-text class="mx-1" type="warning">注意: Mac和Linux系统添加平台后需重启软件使菜单生效.</el-text>
         <div class="btn">
             <el-button style="margin: 10px 5px" @click="dialogVisible = true" type="primary" size="large">添加平台</el-button>
         </div>
@@ -168,7 +169,7 @@ WriteHome(window.location.href).then((data) => {
 
 <style scoped>
 .container {
-    height: 100%;
+    /*height: 100%;*/
     width: 100%;
     display: flex;
     flex-direction: column;

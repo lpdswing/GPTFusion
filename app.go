@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/wailsapp/wails/v2/pkg/menu"
+	"github.com/wailsapp/wails/v2/pkg/menu/keys"
 	wruntime "github.com/wailsapp/wails/v2/pkg/runtime"
 	"net/http"
 	"os"
@@ -27,6 +28,7 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (app *App) startup(ctx context.Context) {
 	app.ctx = ctx
+	wruntime.WindowExecJS(app.ctx, "window.location.href='https://yiyan.baidu.com/';")
 	app.updateDialog(false)
 }
 
@@ -172,16 +174,23 @@ func (app *App) initMenu() *menu.Menu {
 	}
 	// 工具
 	setting := trayMenu.AddSubmenu("设置")
-	setting.AddText("平台管理", nil, func(cd *menu.CallbackData) {
+	setting.AddText("打开设置", keys.CmdOrCtrl("o"), func(cd *menu.CallbackData) {
 		home := configPath("home.txt")
 		url, err := os.ReadFile(home)
 		if err != nil {
 			fmt.Println("Error reading file", err)
+			url = []byte("wails://wails/")
 		}
 		data := string(url)
 		fmt.Println(data)
 		wruntime.WindowExecJS(app.ctx, fmt.Sprintf("window.location.replace('%s');", data))
 		wruntime.WindowReload(app.ctx)
+	})
+	setting.AddText("侧边栏模式", keys.CmdOrCtrl("s"), func(cd *menu.CallbackData) {
+		app.SideMode()
+	})
+	setting.AddText("窗口模式", keys.CmdOrCtrl("w"), func(cd *menu.CallbackData) {
+		app.WindowMode()
 	})
 
 	about := trayMenu.AddSubmenu("帮助")
@@ -254,4 +263,59 @@ func (app *App) updateDialog(show bool) {
 			})
 		}
 	}
+}
+
+func (app *App) GetVersion() string {
+	return Version
+}
+
+func (app *App) WindowMode() {
+	wruntime.WindowSetSize(app.ctx, 1024, 768)
+}
+
+func (app *App) SideMode() {
+	wruntime.WindowSetPosition(app.ctx, 0, 25)
+	wruntime.WindowSetSize(app.ctx, 400, 768)
+	wruntime.WindowSetAlwaysOnTop(app.ctx, true)
+}
+
+type Setting struct {
+	Mode              string `json:"mode"`
+	AlwaysOnTop       bool   `json:"always_on_top"`
+	HideWindowOnClose bool   `json:"hide_window_on_close"`
+}
+
+func (app *App) ReadSetting() Setting {
+	file := configPath("setting.json")
+	url, err := os.ReadFile(file)
+	if err != nil {
+		fmt.Println("Error reading file", err)
+		url = []byte("{\"mode\":\"1\",\"always_on_top\":false,\"hide_window_on_close\":true}")
+	}
+	var setting Setting
+	json.Unmarshal(url, &setting)
+	fmt.Println(setting)
+	return setting
+}
+
+func (app *App) WriteSetting(setting Setting) {
+	file := configPath("setting.json")
+	data, err := json.Marshal(setting)
+	if err != nil {
+		fmt.Println("Error reading file", err)
+	}
+	err = os.WriteFile(file, data, 0644)
+	if err != nil {
+		fmt.Println("Error Writing file", err)
+	}
+	app.reload(setting)
+}
+
+func (app *App) reload(setting Setting) {
+	if setting.Mode == "1" {
+		app.WindowMode()
+	} else {
+		app.SideMode()
+	}
+	wruntime.WindowSetAlwaysOnTop(app.ctx, setting.AlwaysOnTop)
 }

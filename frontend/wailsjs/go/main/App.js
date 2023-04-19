@@ -6,10 +6,30 @@ export function EditMenu(arg1) {
   return window['go']['main']['App']['EditMenu'](arg1);
 }
 
+export function GetVersion() {
+  return window['go']['main']['App']['GetVersion']();
+}
+
 export function ReadMenu() {
   return window['go']['main']['App']['ReadMenu']();
 }
 
+export function ReadSetting() {
+  return window['go']['main']['App']['ReadSetting']();
+}
+
+export function SideMode() {
+  return window['go']['main']['App']['SideMode']();
+}
+
+export function WindowMode() {
+  return window['go']['main']['App']['WindowMode']();
+}
+
 export function WriteHome(arg1) {
   return window['go']['main']['App']['WriteHome'](arg1);
+}
+
+export function WriteSetting(arg1) {
+  return window['go']['main']['App']['WriteSetting'](arg1);
 }

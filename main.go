@@ -14,7 +14,7 @@ var assets embed.FS
 //go:embed build/appicon.png
 var icon []byte
 
-const Version = "v0.4.0"
+const Version = "v0.5.0"
 
 func main() {
 	// Create an instance of the app structure
@@ -34,6 +34,9 @@ func main() {
 		Bind: []interface{}{
 			app,
 		},
+		// 无边框
+		Frameless:         false,
+		HideWindowOnClose: app.ReadSetting().HideWindowOnClose,
 		Mac: &mac.Options{
 			About: &mac.AboutInfo{
 				Title:   "GPT聚合版",

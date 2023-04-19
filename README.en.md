@@ -2,8 +2,8 @@
 <div align="center">
     <img src="demo/GPT Fusion.png" alt="chatgpt"/>
     <h1>GPTFusion - GPT聚合版</h1>
-    <div><img src="https://img.shields.io/badge/stable%20version-v0.4.0-blue.svg?style=flat"></img>
-<img src="https://img.shields.io/badge/preview%20version-v0.5.0%20PREVIEW-orange.svg?style=flat"></img>
+    <div><img src="https://img.shields.io/badge/stable%20version-v0.5.0-blue.svg?style=flat"></img>
+<img src="https://img.shields.io/badge/preview%20version-v0.6.0%20PREVIEW-orange.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/license-GPL%203.0-brightgreen.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/language-简体中文-brightgreen.svg?style=flat"></img></div>
     <h4>Aggregate ChatGPT official version, ChatGPT free version, Wen Xin Yiyan, POE, chat chat and other platforms.</h4>
@@ -68,6 +68,7 @@ Must be qualified and must log in to Microsoft account (domestic IP cannot be ju
 <img src="demo/tongyi.png" width=40% alt="阿里"/>
 <img src="demo/platforms.png" width=40% alt="阿里"/>
 <img src="demo/wxyg.png" width=40% alt="wenxinyige"/>
+<img src="demo/side.png" width=40% alt="side"/>
 </div>
 
 ## Thanks

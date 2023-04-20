@@ -1,0 +1,93 @@
+[
+  {
+    "id": 10000,
+    "title": "AI对话平台",
+    "priority": 0,
+    "menu": [
+      {
+        "id": 10310,
+        "label": "ChatGPT(官方版)",
+        "url": "https://chat.openai.com/chat",
+        "priority": 0,
+        "separator": false
+      },
+      {
+        "id": 10311,
+        "label": "Chat Chat(直连/限额)",
+        "url": "https://chat.okis.dev/zh-CN?mode=chat",
+        "priority": 0,
+        "separator": false
+      },
+      {
+        "id": 10312,
+        "label": "ChatBot(推荐)",
+        "url": "https://chatbot.theb.ai/",
+        "priority": 0,
+        "separator": false
+      },
+      {
+        "id": 10313,
+        "label": "FreeGpt",
+        "url": "https://freegpt.one/",
+        "priority": 0,
+        "separator": true
+      },
+      {
+        "id": 10100,
+        "label": "文心一言",
+        "url": "https://yiyan.baidu.com/",
+        "priority": 0,
+        "separator": false
+      },
+      {
+        "id": 10200,
+        "label": "通义千问",
+        "url": "https://tongyi.aliyun.com/",
+        "priority": 0,
+        "separator": true
+      },
+      {
+        "id": 10400,
+        "label": "Poe",
+        "url": "https://poe.com/",
+        "priority": 0,
+        "separator": false
+      },
+      {
+        "id": 10500,
+        "label": "BARD",
+        "url": "https://bard.google.com/",
+        "priority": 0,
+        "separator": false
+      },
+      {
+        "id": 10600,
+        "label": "Bing",
+        "url": "https://www.bing.com/new",
+        "priority": 0,
+        "separator": false
+      }
+    ]
+  },
+  {
+    "id": 20000,
+    "title": "AI图像平台",
+    "priority": 0,
+    "menu": [
+      {
+        "id": 20100,
+        "label": "文心一格",
+        "url": "https://yige.baidu.com",
+        "priority": 0,
+        "separator": false
+      },
+      {
+        "id": 20200,
+        "label": "Bing Image Creator",
+        "url": "https://www.bing.com/create",
+        "priority": 0,
+        "separator": false
+      }
+    ]
+  }
+]

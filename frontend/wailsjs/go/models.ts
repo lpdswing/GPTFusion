@@ -4,6 +4,8 @@ export namespace main {
 	    id: string;
 	    label: string;
 	    url: string;
+	    priority: number;
+	    separator: boolean;
 	
 	    static createFrom(source: any = {}) {
 	        return new PlatForm(source);
@@ -14,6 +16,8 @@ export namespace main {
 	        this.id = source["id"];
 	        this.label = source["label"];
 	        this.url = source["url"];
+	        this.priority = source["priority"];
+	        this.separator = source["separator"];
 	    }
 	}
 	export class Setting {

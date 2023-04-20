@@ -18,30 +18,43 @@
                 <span>窗口选项</span>
             </div>
         </template>
-        <el-switch
-                v-model="alwaysTop"
-                class="mb-2"
-                size="large"
-                @change="onAlwaysTopChange"
-                active-text="窗口始终置顶"
-                inactive-text="取消窗口置顶"
-        />
-        <br>
-        <el-switch
-                v-model="hideWindowOnClose"
-                class="mb-2"
-                size="large"
-                @change="onHideWindowOnCloseChange"
-                active-text="点击关闭按钮隐藏窗口"
-                inactive-text="点击关闭按钮关闭窗口"
-        />
-        <br>
-        <el-text class="mx-1" type="warning">注意: 此设置重启软件生效.</el-text>
+
+
+        <el-row :gutter="18" justify="space-around">
+            <el-col :span="20">
+                <el-switch
+                        v-model="alwaysTop"
+                        class="mb-2"
+                        size="large"
+                        @change="onAlwaysTopChange"
+                        active-text="窗口始终置顶"
+                        inactive-text="取消窗口置顶"
+                />
+            </el-col>
+            <el-col :span="4"></el-col>
+        </el-row>
+        <el-row :gutter="18" justify="space-around">
+            <el-col :span="20">
+                <el-switch
+                        v-model="hideWindowOnClose"
+                        class="mb-2"
+                        size="large"
+                        @change="onHideWindowOnCloseChange"
+                        active-text="点击关闭按钮隐藏窗口"
+                        inactive-text="点击关闭按钮关闭窗口"
+                />
+            </el-col>
+            <el-col :span="4">
+                <el-tooltip content="此项需重启生效" placement="top">
+                    <el-button>提示</el-button>
+                </el-tooltip>
+            </el-col>
+        </el-row>
     </el-card>
 </template>
 
 <script lang="ts" setup>
-import {reactive, ref} from 'vue'
+import {ref} from 'vue'
 import {main} from "../../wailsjs/go/models"
 import {ReadSetting, WriteSetting} from "../../wailsjs/go/main/App";
 

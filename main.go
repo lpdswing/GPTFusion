@@ -22,7 +22,7 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "GPT聚合版",
+		Title:  "GPTFusion",
 		Width:  1024,
 		Height: 768,
 		AssetServer: &assetserver.Options{
@@ -39,8 +39,8 @@ func main() {
 		HideWindowOnClose: app.ReadSetting().HideWindowOnClose,
 		Mac: &mac.Options{
 			About: &mac.AboutInfo{
-				Title:   "GPT聚合版",
-				Message: "版本号(" + Version + ")\n\n" + "GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.\n\n" + "© 2023 by lpdswing.\n" + "All Rights Reserved.",
+				Title:   "GPTFusion",
+				Message: "版本号(" + Version + ")\n\n" + "GPTFusion是一个聚合了多个GPT聊天机器人的聊天工具.\n\n" + "© 2023 by lpdswing.\n" + "All Rights Reserved.",
 				Icon:    icon,
 			},
 		},

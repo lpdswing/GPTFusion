@@ -63,13 +63,12 @@ GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
 
 ## 截图
 <div>
-<img src="demo/baidu.png" width=40% alt="yiyan"/>
-<img src="demo/gpt.png" width=40% alt="chatchat"/>
+<img src="demo/win1.png" width=40% alt="yiyan"/>
+<img src="demo/win2.png" width=40% alt="yiyan"/>
+<img src="demo/win3.png" width=40% alt="chatchat"/>
 <img src="demo/poe.png" width=40% alt="poe"/>
 <img src="demo/select.png" width=40% alt="平台选择"/>
-<img src="demo/tongyi.png" width=40% alt="阿里"/>
 <img src="demo/platforms.png" width=40% alt="阿里"/>
-<img src="demo/wxyg.png" width=40% alt="wenxinyige"/>
 <img src="demo/side.png" width=40% alt="side"/>
 </div>
 

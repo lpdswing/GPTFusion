@@ -1,8 +1,6 @@
-module changeme
+module chatgpt
 
-go 1.18
-
-// replace github.com/wailsapp/wails/v2 v2.4.1 => /Users/lipeng/go/pkg/mod
+go 1.19
 
 require github.com/wailsapp/wails/v2 v2.4.1
 

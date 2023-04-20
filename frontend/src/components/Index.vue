@@ -59,7 +59,9 @@ const deleteDialogVisible = ref(false)
 const newRowData = reactive({
     id: '',
     label: '',
-    url: ''
+    url: '',
+    priority: 0,
+    separator: false
 })
 
 const addRowFormRef = ref<FormInstance>()
@@ -88,7 +90,9 @@ const addRow = () => {
                 tableData.value.push({
                     id: uuidv4(),
                     label: newRowData.label,
-                    url: newRowData.url
+                    url: newRowData.url,
+                    priority: 0,
+                    separator: false
                 })
             }
             editMenu(tableData.value)
@@ -130,9 +134,9 @@ WriteHome(window.location.href).then((data) => {
                     <p>暂无数据</p>
                 </div>
             </template>
-            <el-table-column prop="label" label="平台名称" width="150"/>
+            <el-table-column prop="label" label="平台名称" width="150vw"/>
             <el-table-column prop="url" label="平台地址"/>
-            <el-table-column label="操作" fixed="right" width="150">
+            <el-table-column label="操作" fixed="right" width="150vw">
                 <template #default="{ row }">
                     <el-button type="primary" size="small" @click="edit(row)"
                     >编辑

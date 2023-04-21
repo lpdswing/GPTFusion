@@ -2,11 +2,11 @@
 <div align="center">
     <img src="demo/GPT Fusion.png" alt="chatgpt"/>
     <h1>GPTFusion</h1>
-    <div><img src="https://img.shields.io/badge/stable%20version-v0.5.0-blue.svg?style=flat"></img>
-<img src="https://img.shields.io/badge/preview%20version-v0.6.0%20PREVIEW-orange.svg?style=flat"></img>
+    <div><img src="https://img.shields.io/badge/stable%20version-v0.6.0-blue.svg?style=flat"></img>
+<img src="https://img.shields.io/badge/preview%20version-v0.7.0%20PREVIEW-orange.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/license-GPL%203.0-brightgreen.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/language-简体中文-brightgreen.svg?style=flat"></img></div>
-    <h4>聚合ChatGPT官方版、ChatGPT免费版、文心一言、POE、chat chat等多个平台。</h4>
+    <h4>聚合ChatGPT官方版、ChatGPT多个镜像,POE,文心一言等平台。</h4>
 </div>
 <div align="center">
 <strong>
@@ -20,17 +20,15 @@
 
 ## 关于
 
-GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
+GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具, 高效快捷一键切换.
 
 ## 功能
-- [x] 跨平台支持
+- [x] 跨平台支持(支持Windows,Mac,Linux)
 - [x] 自定义平台菜单
-- [x] 菜单动态加载(windows)
+- [x] 菜单动态加载(仅Windows)
 - [x] 检查更新
 - [x] 内置平台分类
 - [x] 侧边栏/窗口模式
-- [ ] 菜单动态加载(linux) 暂不支持
-- [ ] 菜单动态加载(macos) 暂不支持
 - [ ] 更多功能
 
 #### 聚合的平台
@@ -42,15 +40,12 @@ GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
 无需注册账号、无需登录账号、稳定极速(部分国家和地区无法正常访问)
 内置3个国内镜像, 可通过自定义平台功能把自己的镜像添加至自定义平台菜单.
 
-##### ChatChat
-无需注册账号、无需登录账号、稳定极速、每日限额，可正常访问。
-
 ##### POE
-需要注册账户、需要登录账号、集合Sage（免费）、ChatGPT4（付费）、ChatGPT（付费）、Clude（免费）、Clude+（付费）、DragonFly（免费）(部分国家和地区无法正常访问)
-建议谷歌账户登录
+需要注册账户、需要登录账号、集合Sage（免费）、ChatGPT4（每日一次）、ChatGPT（免费）、Clude（免费）、Clude+（每日一次）、DragonFly（免费）(部分国家和地区无法正常访问)
+建议谷歌账户注册登录
 
 ##### 文心一言
-需要有体验资格且必须登录百度账号(扫描登录可能会记不住登录状态)
+需要有体验资格且必须登录百度账号(建议账号密码登录,扫码登录记不住登录状态)
 
 ##### 通义千问
 需要有邀请码
@@ -72,9 +67,9 @@ GPT聚合版是一个聚合了多个GPT聊天机器人的聊天工具.
 <img src="demo/side.png" width=40% alt="side"/>
 </div>
 
-## 感谢
+## 特别感谢
 
-- Idea: [OneGPT - GPT聚合版](https://github.com/1595901624/gpt-aggregated-edition)
+- [OneGPT](https://github.com/1595901624/gpt-aggregated-edition)
 - [wails](https://github.com/wailsapp/wails)
 
 
@@ -102,9 +97,11 @@ To build a redistributable, production mode package, use `wails build`.
 - GitHub issue
 - **Go学习日记** 微信公众号
 **扫码关注公众号**
+
 <img src="demo/gzh.jpg" height="240" />
 
-## 捐赠
+## 感谢支持
+觉得对你有帮助请问喝杯咖啡~~
 
 | 微信 | 支付宝 |
 | --- | --- |

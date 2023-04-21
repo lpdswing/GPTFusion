@@ -24,6 +24,8 @@ export namespace main {
 	    mode: string;
 	    always_on_top: boolean;
 	    hide_window_on_close: boolean;
+	    remember_last_page: boolean;
+	    last_page: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new Setting(source);
@@ -34,6 +36,8 @@ export namespace main {
 	        this.mode = source["mode"];
 	        this.always_on_top = source["always_on_top"];
 	        this.hide_window_on_close = source["hide_window_on_close"];
+	        this.remember_last_page = source["remember_last_page"];
+	        this.last_page = source["last_page"];
 	    }
 	}
 

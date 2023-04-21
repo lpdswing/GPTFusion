@@ -11,6 +11,8 @@ type Setting struct {
 	Mode              string `json:"mode"`
 	AlwaysOnTop       bool   `json:"always_on_top"`
 	HideWindowOnClose bool   `json:"hide_window_on_close"`
+	RememberLastPage  bool   `json:"remember_last_page"`
+	LastPage          string `json:"last_page"`
 }
 
 // WindowMode 窗口模式
@@ -30,7 +32,7 @@ func (app *App) ReadSetting() Setting {
 	data, err := os.ReadFile(file)
 	if err != nil {
 		fmt.Println("Error reading file", err)
-		data = []byte("{\"mode\":\"1\",\"always_on_top\":false,\"hide_window_on_close\":true}")
+		data = []byte("{\"mode\":\"1\",\"always_on_top\":false,\"hide_window_on_close\":false,\"remember_last_page\":true,\"last_page\":\"https://chatbot.theb.ai/\"}")
 	}
 	var setting Setting
 	err = json.Unmarshal(data, &setting)
@@ -62,4 +64,13 @@ func (app *App) reload(setting Setting) {
 		app.SideMode()
 	}
 	wruntime.WindowSetAlwaysOnTop(app.ctx, setting.AlwaysOnTop)
+}
+
+// WriteLastPage 记录最后登录的页面
+func (app *App) WriteLastPage(url string) {
+	setting := app.ReadSetting()
+	if setting.RememberLastPage {
+		setting.LastPage = url
+		app.WriteSetting(setting)
+	}
 }

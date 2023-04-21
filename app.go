@@ -21,7 +21,11 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (app *App) startup(ctx context.Context) {
 	app.ctx = ctx
-	wruntime.WindowExecJS(app.ctx, "window.location.href='https://chatbot.theb.ai/';")
+	if app.ReadSetting().RememberLastPage {
+		wruntime.WindowExecJS(app.ctx, "window.location.href='"+app.ReadSetting().LastPage+"';")
+	} else {
+		wruntime.WindowExecJS(app.ctx, "window.location.href='https://chatbot.theb.ai/';")
+	}
 	app.updateDialog(false)
 }
 

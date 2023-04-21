@@ -16,4 +16,6 @@ export function WindowMode():Promise<void>;
 
 export function WriteHome(arg1:string):Promise<void>;
 
+export function WriteLastPage(arg1:string):Promise<void>;
+
 export function WriteSetting(arg1:main.Setting):Promise<void>;

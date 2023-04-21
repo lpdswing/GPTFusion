@@ -30,6 +30,10 @@ export function WriteHome(arg1) {
   return window['go']['main']['App']['WriteHome'](arg1);
 }
 
+export function WriteLastPage(arg1) {
+  return window['go']['main']['App']['WriteLastPage'](arg1);
+}
+
 export function WriteSetting(arg1) {
   return window['go']['main']['App']['WriteSetting'](arg1);
 }

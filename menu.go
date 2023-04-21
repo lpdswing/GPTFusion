@@ -111,6 +111,7 @@ func (app *App) initMenu() *menu.Menu {
 			subtmp := _submenu
 			plt.AddText(subtmp.Label, nil, func(data *menu.CallbackData) {
 				wruntime.WindowExecJS(app.ctx, fmt.Sprintf("window.location.replace('%s');", subtmp.Url))
+				app.WriteLastPage(subtmp.Url)
 			})
 			if subtmp.Separator {
 				plt.AddSeparator()
@@ -130,6 +131,7 @@ func (app *App) initMenu() *menu.Menu {
 			Click: func(cd *menu.CallbackData) {
 				jscode := fmt.Sprintf("window.location.replace('%s');", temp.Url)
 				wruntime.WindowExecJS(app.ctx, jscode)
+				app.WriteLastPage(temp.Url)
 			},
 		})
 	}

@@ -18,38 +18,42 @@
                 <span>窗口选项</span>
             </div>
         </template>
-
-
-        <el-row :gutter="18" justify="space-around">
-            <el-col :span="20">
+        <el-row :gutter="18" justify="start">
+            <el-col :span="18">
                 <el-switch
                         v-model="alwaysTop"
-                        class="mb-2"
                         size="large"
                         @change="onAlwaysTopChange"
-                        active-text="窗口始终置顶"
-                        inactive-text="取消窗口置顶"
+                        active-text="保持窗口置顶"
                 />
             </el-col>
-            <el-col :span="4"></el-col>
         </el-row>
-        <el-row :gutter="18" justify="space-around">
-            <el-col :span="20">
+        <el-row :gutter="18" justify="start">
+            <el-col :span="18">
+                <el-switch
+                    v-model="rememberLastPage"
+                    size="large"
+                    @change="onRememberLastPageChange"
+                    active-text="记住上次页面"
+                />
+            </el-col>
+        </el-row>
+        <el-row :gutter="18" justify="center">
+            <el-col :span="18">
                 <el-switch
                         v-model="hideWindowOnClose"
-                        class="mb-2"
                         size="large"
                         @change="onHideWindowOnCloseChange"
-                        active-text="点击关闭按钮隐藏窗口"
-                        inactive-text="点击关闭按钮关闭窗口"
+                        active-text="关闭隐藏窗口"
                 />
             </el-col>
-            <el-col :span="4">
+            <el-col :span="6">
                 <el-tooltip content="此项需重启生效" placement="top">
                     <el-button>提示</el-button>
                 </el-tooltip>
             </el-col>
         </el-row>
+
     </el-card>
 </template>
 
@@ -60,15 +64,18 @@ import {ReadSetting, WriteSetting} from "../../wailsjs/go/main/App";
 
 let setting = ref<main.Setting>({
     mode: "1",
-    always_on_top: true,
-    hide_window_on_close: true,
+    always_on_top: false,
+    hide_window_on_close: false,
+    remember_last_page: true,
+    last_page: "/",
 })
 
 const mode_radio = ref("1")
 // 始终置顶
 const alwaysTop = ref(false)
 // 关闭隐藏
-const hideWindowOnClose = ref(true)
+const hideWindowOnClose = ref(false)
+const rememberLastPage = ref(false)
 
 ReadSetting().then((data) => {
     setting.value = data
@@ -76,6 +83,7 @@ ReadSetting().then((data) => {
     mode_radio.value = setting.value.mode
     alwaysTop.value = setting.value.always_on_top
     hideWindowOnClose.value = setting.value.hide_window_on_close
+    rememberLastPage.value = setting.value.remember_last_page
 })
 
 const mode_change = (val: string) => {
@@ -91,6 +99,11 @@ const onAlwaysTopChange = (val: boolean) => {
 
 const onHideWindowOnCloseChange = (val: boolean) => {
     setting.value.hide_window_on_close = val
+    WriteSetting(setting.value)
+}
+
+const onRememberLastPageChange = (val: boolean) => {
+    setting.value.remember_last_page = val
     WriteSetting(setting.value)
 }
 

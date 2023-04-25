@@ -34,6 +34,7 @@ const edit = (row: main.PlatForm) => {
     newRowData.id = row.id
     newRowData.label = row.label
     newRowData.url = row.url
+    newRowData.group = row.group
 };
 const removeId = ref('')
 const del = (row: main.PlatForm) => {
@@ -61,7 +62,8 @@ const newRowData = reactive({
     label: '',
     url: '',
     priority: 0,
-    separator: false
+    separator: false,
+    group: ""
 })
 
 const addRowFormRef = ref<FormInstance>()
@@ -73,6 +75,9 @@ const newRowRules = reactive<FormRules>({
     ],
     url: [
         {required: true, message: '请输入平台地址', trigger: 'blur'}
+    ],
+    group: [
+        {required: false, message: '请输入分组名称', trigger: 'blur'}
     ]
 })
 
@@ -92,7 +97,8 @@ const addRow = () => {
                     label: newRowData.label,
                     url: newRowData.url,
                     priority: 0,
-                    separator: false
+                    separator: false,
+                    group: newRowData.group
                 })
             }
             editMenu(tableData.value)
@@ -113,6 +119,7 @@ const closeDig = () => {
     newRowData.id = ''
     newRowData.label = ''
     newRowData.url = ''
+    newRowData.group = ''
 }
 
 // localstorage
@@ -136,6 +143,7 @@ WriteHome(window.location.href).then((data) => {
             </template>
             <el-table-column prop="label" label="平台名称" width="150vw"/>
             <el-table-column prop="url" label="平台地址"/>
+            <el-table-column prop="group" label="分组"/>
             <el-table-column label="操作" fixed="right" width="150vw">
                 <template #default="{ row }">
                     <el-button type="primary" size="small" @click="edit(row)"
@@ -155,6 +163,9 @@ WriteHome(window.location.href).then((data) => {
             </el-form-item>
             <el-form-item label="平台链接" prop="url">
                 <el-input v-model="newRowData.url" placeholder="请输入平台链接: 比如(https://www.baidu.com)"/>
+            </el-form-item>
+            <el-form-item label="平台分组" prop="group">
+                <el-input v-model="newRowData.group" placeholder="请输入分组"/>
             </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">

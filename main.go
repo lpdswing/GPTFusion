@@ -6,6 +6,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
+	"net/http"
 )
 
 //go:embed all:frontend/dist
@@ -26,7 +27,8 @@ func main() {
 		Width:  1024,
 		Height: 768,
 		AssetServer: &assetserver.Options{
-			Assets: assets,
+			Assets:  assets,
+			Handler: customHandler(),
 		},
 		Menu:             app.initMenu(),
 		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
@@ -49,4 +51,10 @@ func main() {
 	if err != nil {
 		println("Error:", err.Error())
 	}
+}
+
+func customHandler() http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("My-Header", "test")
+	})
 }

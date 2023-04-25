@@ -6,6 +6,7 @@ export namespace main {
 	    url: string;
 	    priority: number;
 	    separator: boolean;
+	    group: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new PlatForm(source);
@@ -18,6 +19,7 @@ export namespace main {
 	        this.url = source["url"];
 	        this.priority = source["priority"];
 	        this.separator = source["separator"];
+	        this.group = source["group"];
 	    }
 	}
 	export class Setting {

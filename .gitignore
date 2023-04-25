@@ -5,4 +5,5 @@ frontend/dist
 .DS_Store
 home.txt
 menu.json
+.vscode
 ```

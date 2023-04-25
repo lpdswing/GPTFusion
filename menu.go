@@ -9,6 +9,7 @@ import (
 	wruntime "github.com/wailsapp/wails/v2/pkg/runtime"
 	"os"
 	"runtime"
+	"strings"
 )
 
 //go:embed resource/built_in_menu.json
@@ -20,6 +21,7 @@ type PlatForm struct {
 	Url       string `json:"url"`
 	Priority  int    `json:"priority" default:"0"`
 	Separator bool   `json:"separator" default:"false"`
+	Group     string `json:"group" default:"默认分组"`
 }
 
 type Menu struct {
@@ -54,6 +56,7 @@ func (app *App) ReadMenu() []PlatForm {
 				Url:       "https://www.google.com",
 				Priority:  0,
 				Separator: false,
+				Group:     "默认分组",
 			},
 		}
 		content, err := json.Marshal(platforms)
@@ -105,14 +108,19 @@ func (app *App) initMenu() *menu.Menu {
 		trayMenu.Append(menu.EditMenu())
 	}
 	// 自动生成内置菜单
+	notSupport := []string{"10600", "20200"}
 	for _, _menu := range menus {
 		tmp := _menu
 		plt := trayMenu.AddSubmenu(tmp.Title)
 		for _, _submenu := range _menu.SubMenu {
 			subtmp := _submenu
 			plt.AddText(subtmp.Label, nil, func(data *menu.CallbackData) {
-				wruntime.WindowExecJS(app.ctx, fmt.Sprintf("window.location.replace('%s');", subtmp.Url))
-				app.WriteLastPage(subtmp.Url)
+				if strings.Contains(strings.Join(notSupport, ","), subtmp.Id) {
+					wruntime.BrowserOpenURL(app.ctx, subtmp.Url)
+				} else {
+					wruntime.WindowExecJS(app.ctx, fmt.Sprintf("window.location.replace('%s');", subtmp.Url))
+					app.WriteLastPage(subtmp.Url)
+				}
 			})
 			if subtmp.Separator {
 				plt.AddSeparator()
@@ -121,21 +129,37 @@ func (app *App) initMenu() *menu.Menu {
 	}
 
 	custom := trayMenu.AddSubmenu("自定义平台")
-	custom_menu_data := app.ReadMenu()
-	fmt.Println(custom_menu_data)
-	for _, p := range custom_menu_data {
-		// go的for循环陷阱
-		temp := p
-		custom.Append(&menu.MenuItem{
-			Label: temp.Label,
-			Type:  menu.TextType,
-			Click: func(cd *menu.CallbackData) {
-				jscode := fmt.Sprintf("window.location.replace('%s');", temp.Url)
-				wruntime.WindowExecJS(app.ctx, jscode)
-				app.WriteLastPage(temp.Url)
-			},
-		})
+	customMenuData := app.ReadMenu()
+	groups := make(map[string][]PlatForm)
+	for _, p := range customMenuData {
+		if p.Group != "" {
+			groups[p.Group] = append(groups[p.Group], p)
+			continue
+		}
+		groups["默认分组"] = append(groups["默认分组"], p)
 	}
+
+	for k, v := range groups {
+		if k != "默认分组" {
+			custom.AddSeparator()
+		}
+		g := custom.AddSubmenu(k)
+		vv := v
+		for _, p := range vv {
+			// go的for循环陷阱
+			temp := p
+			g.Append(&menu.MenuItem{
+				Label: temp.Label,
+				Type:  menu.TextType,
+				Click: func(cd *menu.CallbackData) {
+					jscode := fmt.Sprintf("window.location.replace('%s');", temp.Url)
+					wruntime.WindowExecJS(app.ctx, jscode)
+					app.WriteLastPage(temp.Url)
+				},
+			})
+		}
+	}
+
 	// 工具
 	setting := trayMenu.AddSubmenu("设置")
 	setting.AddText("打开设置", keys.CmdOrCtrl("o"), func(cd *menu.CallbackData) {

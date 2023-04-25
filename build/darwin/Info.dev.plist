@@ -28,5 +28,8 @@
             <key>NSAllowsLocalNetworking</key>
             <true/>
         </dict>
+        <!-- avoid showing the app on the Dock -->
+        <key>LSUIElement</key>
+        <string>1</string>
     </dict>
 </plist>

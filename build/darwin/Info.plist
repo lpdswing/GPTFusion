@@ -23,5 +23,8 @@
         <string>true</string>
         <key>NSHumanReadableCopyright</key>
         <string>{{.Info.Copyright}}</string>
+        <!-- avoid showing the app on the Dock -->
+        <key>LSUIElement</key>
+        <string>1</string>
     </dict>
 </plist>

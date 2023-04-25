@@ -23,7 +23,7 @@ type PlatForm struct {
 }
 
 type Menu struct {
-	Id       int        `json:"id"`
+	Id       string     `json:"id"`
 	Title    string     `json:"title"`
 	Priority int        `json:"priority" default:"0"`
 	SubMenu  []PlatForm `json:"menu"`
@@ -49,9 +49,11 @@ func (app *App) ReadMenu() []PlatForm {
 		fmt.Println("File does not exist")
 		platforms = []PlatForm{
 			{
-				Id:    "1",
-				Label: "自定义Demo",
-				Url:   "https://www.google.com",
+				Id:        "1",
+				Label:     "自定义Demo",
+				Url:       "https://www.google.com",
+				Priority:  0,
+				Separator: false,
 			},
 		}
 		content, err := json.Marshal(platforms)
@@ -89,7 +91,6 @@ func (app *App) updateCustomMenu() {
 	_menu := app.initMenu()
 	wruntime.MenuSetApplicationMenu(app.ctx, _menu)
 	wruntime.MenuUpdateApplicationMenu(app.ctx)
-	//wruntime.WindowReload(app.ctx)
 }
 
 func (app *App) initMenu() *menu.Menu {

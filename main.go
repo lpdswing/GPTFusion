@@ -15,7 +15,7 @@ var assets embed.FS
 //go:embed build/appicon.png
 var icon []byte
 
-const Version = "v0.6.0"
+const Version = "v0.7.0-beta"
 
 func main() {
 	// Create an instance of the app structure

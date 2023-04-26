@@ -6,4 +6,5 @@ frontend/dist
 home.txt
 menu.json
 .vscode
+*.bak
 ```

@@ -2,11 +2,14 @@ package main
 
 import (
 	"embed"
+	"fmt"
+	"github.com/joho/godotenv"
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
 	"net/http"
+	"os"
 )
 
 //go:embed all:frontend/dist
@@ -15,12 +18,20 @@ var assets embed.FS
 //go:embed build/appicon.png
 var icon []byte
 
-const Version = "v0.6.0"
+func init() {
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("Error loading .env file")
+	}
+	Version = os.Getenv("VERSION")
+}
+
+var Version string
 
 func main() {
+	fmt.Println("Version: " + Version)
 	// Create an instance of the app structure
 	app := NewApp()
-
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:  "GPTFusion",

@@ -10,6 +10,7 @@ import (
 	"os"
 	"runtime"
 	"strings"
+	"time"
 )
 
 //go:embed resource/built_in_menu.json
@@ -196,4 +197,54 @@ func (app *App) initMenu() *menu.Menu {
 		app.updateDialog(true)
 	})
 	return trayMenu
+}
+
+func (app *App) ImportPlatfrom() {
+	// 选择文件
+	file, err := wruntime.OpenFileDialog(app.ctx, wruntime.OpenDialogOptions{
+		Title: "选择文件",
+	})
+	if err != nil {
+		fmt.Println("Error opening file", err)
+		return
+	}
+	// 读取文件
+	content, err := os.ReadFile(file)
+	if err != nil {
+		fmt.Println("Error reading file", err)
+		return
+	}
+	// 解析json
+	var platforms []PlatForm
+	if err := json.Unmarshal(content, &platforms); err != nil {
+		fmt.Println("failed to unmarshal platforms:", err)
+		return
+	}
+	//fmt.Println(platforms)
+	// 保存到文件
+	app.EditMenu(platforms)
+}
+
+func (app *App) ExportPlatfrom() {
+	// 选择文件
+	platorms := app.ReadMenu()
+	currentTime := time.Now().Format("20060102_150405")
+	file, err := wruntime.SaveFileDialog(app.ctx, wruntime.SaveDialogOptions{
+		Title:           "选择文件",
+		DefaultFilename: "menu" + currentTime + ".json",
+	})
+	if err != nil {
+		fmt.Println("Error opening file", err)
+		return
+	}
+	// 写入文件
+	content, err := json.Marshal(platorms)
+	if err != nil {
+		fmt.Println("failed to marshal platforms:", err)
+		return
+	}
+	if err := os.WriteFile(file, content, 0644); err != nil {
+		fmt.Println("Error writing file", err)
+		return
+	}
 }

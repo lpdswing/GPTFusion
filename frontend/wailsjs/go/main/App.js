@@ -6,8 +6,16 @@ export function EditMenu(arg1) {
   return window['go']['main']['App']['EditMenu'](arg1);
 }
 
+export function ExportPlatfrom() {
+  return window['go']['main']['App']['ExportPlatfrom']();
+}
+
 export function GetVersion() {
   return window['go']['main']['App']['GetVersion']();
+}
+
+export function ImportPlatfrom() {
+  return window['go']['main']['App']['ImportPlatfrom']();
 }
 
 export function ReadMenu() {

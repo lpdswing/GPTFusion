@@ -2,7 +2,7 @@
 import {reactive, ref} from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import type { FormInstance, FormRules } from 'element-plus'
-import { ReadMenu, EditMenu, WriteHome } from "../../wailsjs/go/main/App";
+import {ReadMenu, EditMenu, WriteHome, ImportPlatfrom, ExportPlatfrom} from "../../wailsjs/go/main/App";
 import {main} from "../../wailsjs/go/models"
 
 const tableData = ref<main.PlatForm[]>([])
@@ -126,6 +126,19 @@ const closeDig = () => {
 WriteHome(window.location.href).then((data) => {
     console.log(data)
 })
+
+const importPlatform = function () {
+    ImportPlatfrom().then((data) => {
+        console.log(data)
+        readMenu();
+    })
+}
+
+const exportPlatform = function () {
+    ExportPlatfrom().then((data) => {
+        console.log(data)
+    })
+}
 </script>
 
 <template>
@@ -133,6 +146,8 @@ WriteHome(window.location.href).then((data) => {
         <el-text class="mx-1" type="warning">注意: Mac和Linux系统添加平台后需重启软件使菜单生效.</el-text>
         <div class="btn">
             <el-button style="margin: 10px 5px" @click="dialogVisible = true" type="primary" size="large">添加平台</el-button>
+            <el-button style="margin: 10px 5px" @click="importPlatform" type="primary" size="large">导入平台</el-button>
+            <el-button style="margin: 10px 5px" @click="exportPlatform" type="primary" size="large">导出平台</el-button>
         </div>
         <el-table :data="tableData" style="width: 100%; height: 100%">
             <template #empty>

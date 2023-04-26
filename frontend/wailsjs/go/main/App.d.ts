@@ -4,7 +4,11 @@ import {main} from '../models';
 
 export function EditMenu(arg1:Array<main.PlatForm>):Promise<void>;
 
+export function ExportPlatfrom():Promise<void>;
+
 export function GetVersion():Promise<string>;
+
+export function ImportPlatfrom():Promise<void>;
 
 export function ReadMenu():Promise<Array<main.PlatForm>>;
 

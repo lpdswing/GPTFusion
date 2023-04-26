@@ -2,10 +2,7 @@ module chatgpt
 
 go 1.19
 
-require (
-	github.com/joho/godotenv v1.5.1
-	github.com/wailsapp/wails/v2 v2.4.1
-)
+require github.com/wailsapp/wails/v2 v2.4.1
 
 require (
 	github.com/bep/debounce v1.2.1 // indirect

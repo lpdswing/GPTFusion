@@ -3,13 +3,13 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/joho/godotenv"
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
 	"net/http"
 	"os"
+	"strings"
 )
 
 //go:embed all:frontend/dist
@@ -18,10 +18,24 @@ var assets embed.FS
 //go:embed build/appicon.png
 var icon []byte
 
+//go:embed .env
+var envFile embed.FS
+
 func init() {
-	err := godotenv.Load()
+	content, err := envFile.ReadFile(".env")
 	if err != nil {
-		fmt.Println("Error loading .env file")
+		fmt.Println("Error reading file", err)
+		Version = "unknown"
+	}
+	lines := strings.Split(string(content), "\n")
+	for _, line := range lines {
+		pair := strings.Split(line, "=")
+		if len(pair) == 2 {
+			err := os.Setenv(pair[0], pair[1])
+			if err != nil {
+				continue
+			}
+		}
 	}
 	Version = os.Getenv("VERSION")
 }

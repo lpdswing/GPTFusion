@@ -2,8 +2,8 @@
 <div align="center">
     <img src="demo/GPT Fusion.png" alt="chatgpt"/>
     <h1>GPTFusion</h1>
-    <div><img src="https://img.shields.io/badge/stable%20version-v0.5.0-blue.svg?style=flat"></img>
-<img src="https://img.shields.io/badge/preview%20version-v0.6.0%20PREVIEW-orange.svg?style=flat"></img>
+    <div><img src="https://img.shields.io/badge/stable%20version-v0.7.0-blue.svg?style=flat"></img>
+<img src="https://img.shields.io/badge/preview%20version-v0.8.0--rc1%20PREVIEW-orange.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/license-GPL%203.0-brightgreen.svg?style=flat"></img>
 <img src="https://img.shields.io/badge/language-简体中文-brightgreen.svg?style=flat"></img></div>
     <h4>Aggregate ChatGPT official version, ChatGPT free version, Wen Xin Yiyan, POE, chat chat and other platforms.</h4>

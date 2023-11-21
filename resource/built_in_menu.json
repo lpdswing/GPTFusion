@@ -13,24 +13,10 @@
       },
       {
         "id": "10311",
-        "label": "Chat Chat(直连/限额)",
-        "url": "https://chat.okis.dev/zh-CN?mode=chat",
+        "label": "ChatGPT(Shared)",
+        "url": "https://chat-shared3.zhile.io/shared.html?v=2",
         "priority": 0,
         "separator": false
-      },
-      {
-        "id": "10312",
-        "label": "ChatBot(推荐)",
-        "url": "https://chatbot.theb.ai/",
-        "priority": 0,
-        "separator": false
-      },
-      {
-        "id": "10313",
-        "label": "FreeGpt",
-        "url": "https://freegpt.one/",
-        "priority": 0,
-        "separator": true
       },
       {
         "id": "10100",

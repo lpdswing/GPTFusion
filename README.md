@@ -106,3 +106,7 @@ To build a redistributable, production mode package, use `wails build`.
 | 微信 | 支付宝 |
 | --- | --- |
 | <img src="demo/wechat.jpg" height="240" /> | <img src="demo/alipay.jpg" height="240" /> |
+
+## 赞助
+
+[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
